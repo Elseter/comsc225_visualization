@@ -332,15 +332,6 @@ export default function ActivityDataLoader() {
     loadCSVData();
   }, []);
 
-  // Group activities by type
-  const activityTypeGroups = activities.reduce((groups: Record<string, ActivityData[]>, activity) => {
-    const type = activity.activityType || 'Unknown';
-    if (!groups[type]) {
-      groups[type] = [];
-    }
-    groups[type].push(activity);
-    return groups;
-  }, {});
   
   // Additional styles for stats cards to match the chart styling
   const statsStyles = `
