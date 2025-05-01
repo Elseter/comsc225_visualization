@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 export default function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     const handleScroll = () => {
       const position = window.scrollY;
       setScrollPosition(position);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -23,16 +26,18 @@ export default function Home() {
       <section className="hero-section">
         <div className="hero-overlay" style={{ opacity: Math.min(scrollPosition / 500, 0.85) }}></div>
         <div className="map-container">
-          <img 
-            src="/BristolRunningScreenshot.png" 
-            alt="Map showing data visualization of routes in Bristol" 
-            className="map-image" 
+          <img
+            src="/BristolRunningScreenshot.png"
+            alt="Map showing data visualization of routes in Bristol"
+            className="map-image"
           />
         </div>
         <div className="hero-content">
           <h1 className="hero-title">Data Science Insights</h1>
           <p className="hero-subtitle">Analyzing activity patterns in Bristol and beyond</p>
-          <button className="hero-button">Explore My Data</button>
+          <button className="hero-button" onClick={() => navigate('/fullmap')}>
+            View full map
+          </button>        
         </div>
         <div className="scroll-indicator">
           <span>Scroll to explore</span>
