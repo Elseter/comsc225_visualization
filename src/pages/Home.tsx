@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ActivityDataLoader from '../components/ActivityDataLoader';
 import './Home.css';
 
 export default function Home() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
+  const activityData = [
+    { name: 'running', count: 102, emoji: '🏃‍♂️' },
+    { name: 'treadmill running', count: 94, emoji: '🏃‍♂️' },
+    { name: 'walking', count: 52, emoji: '🚶‍♂️' },
+    { name: 'trail running', count: 15, emoji: '🥾' },
+    { name: 'hiking', count: 15, emoji: '🥾' },
+    { name: 'cycling', count: 6, emoji: '🚴‍♂️' },
+    { name: 'skating ws', count: 1, emoji: '⛸️' },
+    { name: 'rowing v2', count: 1, emoji: '🚣‍♂️' },
+  ];
 
 
   useEffect(() => {
@@ -138,6 +149,26 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">Activity Types</h2>
+          <div className="methodology-grid">
+            {activityData.map((activity, index) => (
+              <div className="methodology-card" key={index}>
+                <div className="methodology-icon">{activity.emoji}</div>
+                <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                  {activity.name}
+                </h3>
+                <p>{activity.count} activities</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <ActivityDataLoader />
 
 
       <section className="content-section">
