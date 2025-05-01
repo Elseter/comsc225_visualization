@@ -177,7 +177,6 @@ const chartStyles = `
 `;
 
 export default function ActivityDataLoader() {
-  const [activities, setActivities] = useState<ActivityData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [stats, setStats] = useState<{
@@ -230,7 +229,6 @@ export default function ActivityDataLoader() {
             setError('Error parsing CSV data');
           } else {
             // Set activities data
-            setActivities(results.data);
             
             // Calculate stats from parsed data
             calculateStats(results.data);
