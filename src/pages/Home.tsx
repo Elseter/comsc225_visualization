@@ -34,10 +34,10 @@ export default function Home() {
         </div>
         <div className="hero-content">
           <h1 className="hero-title">Data Science Insights</h1>
-          <p className="hero-subtitle">Analyzing activity patterns in Bristol and beyond</p>
+          <p className="hero-subtitle">Analyzing activity patterns with Garmin</p>
           <button className="hero-button" onClick={() => navigate('/fullmap')}>
             View full map
-          </button>        
+          </button>
         </div>
         <div className="scroll-indicator">
           <span>Scroll to explore</span>
@@ -45,7 +45,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Content sections */}
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">What is Garmin?</h2>
+          <div className="info-grid">
+            <div className="info-text">
+              <p>
+                <strong>Garmin</strong> is a leading manufacturer of GPS-enabled devices, widely used in fitness, outdoor activities, and health tracking. Its wearable products like smartwatches and fitness trackers collect a range of biometric and environmental data, including location, heart rate, pace, elevation, and more.
+              </p>
+              <p>
+                When users engage in activities such as running or cycling, Garmin devices continuously record data points that are then synced to the cloud through the Garmin Connect platform. This enables detailed analysis of user performance and movement patterns over time.
+              </p>
+            </div>
+            <div className="info-image">
+              <img src="./garminDashboard.jpg" alt="Garmin watch tracking activity" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">What Data Does Garmin Collect?</h2>
+          <p>
+            Garmin devices collect detailed biometric and performance data during each activity. This includes core metrics such as:
+          </p>
+          <ul className="data-list">
+            <li><strong>Time & Location:</strong> Start time, time zone, GPS coordinates</li>
+            <li><strong>Activity Details:</strong> Distance, duration, speed, elevation gain/loss</li>
+            <li><strong>Health Metrics:</strong> Heart rate (avg/max), VO2 max, cadence, stride length</li>
+            <li><strong>Performance Insights:</strong> Training effects, power zones, calorie burn</li>
+            <li><strong>Device Info:</strong> Device ID, manufacturer, software version</li>
+            <li><strong>Environmental Context:</strong> Vertical speed, elevation, temperature (in some devices)</li>
+          </ul>
+
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">How Can You Access Garmin Data?</h2>
+          <p>
+            While Garmin makes activity data easy to view within its mobile ecosystem, exporting that data for analysis requires a more technical approach.
+          </p>
+          <h3>Using the Garmin App</h3>
+          <p>
+            For everyday users, Garmin provides a mobile app that syncs with wearable devices over Bluetooth. This app offers a comprehensive dashboard to view current and past activities, including metrics like pace, distance, elevation, and heart rate. However, the app does not allow bulk data export or detailed downloads—especially not in formats suitable for custom analysis.
+          </p>
+
+          <h3>Limitations of Garmin Connect API</h3>
+          <p>
+            Garmin does offer an official API—<strong>Garmin Connect API</strong>—designed for third-party integrations. Unfortunately, access to this API is restricted exclusively to enterprise-level business partners. Gaining access involves a lengthy validation process and approval from Garmin’s internal review team.
+          </p>
+
+          <h3>Third-Party Workarounds</h3>
+          <p>
+            To work around this limitation, I used a community-developed Python package called <strong>Garth</strong>. Garth acts as a lightweight API client with a locally embedded Garmin API key. However, it does not provide out-of-the-box endpoints—you must already know the exact API URLs to make requests.
+          </p>
+          <p>
+            To solve this, I found another open-source project called <strong>garminconnect</strong>. This package acts as a wrapper for Garth and includes many of the needed API endpoint URLs hardcoded into its source. By reviewing the open-source codebase of garminconnect, I was able to identify the specific endpoints necessary to extract my activity data.
+          </p>
+
+          <p>
+            With this combination of tools—<strong>Garth</strong> and <strong>garminconnect</strong>—I was able to authenticate with Garmin's backend and retrieve detailed records of my workouts, exported in structured formats like CSV for further analysis and visualization.
+          </p>
+          <div className='api-image-container'>
+            <img src="./garminConnectAPI.png" alt="Garmin Connect API" className="api-image" />
+          </div>
+        </div>
+      </section>
+
+      <section className="activity-range-section">
+        <div className="container">
+          <h2 className="section-title">Selected Activity Range</h2>
+          <p className="section-subtitle">Visualizing activities recorded from:</p>
+
+          <div className="date-range-card">
+            <div className="date-block">
+              <h3>Start Date</h3>
+              <p>December 25, 2023</p>
+            </div>
+            <div className="range-arrow">→</div>
+            <div className="date-block">
+              <h3>End Date</h3>
+              <p>February 9, 2025</p>
+            </div>
+          </div>
+
+          <p className="date-description">
+            This selection includes over a year of activity data including runs, walks, elevation changes, and heart rate metrics synced from a Garmin device.
+          </p>
+        </div>
+      </section>
+
+
       <section className="content-section">
         <div className="container">
           <h2 className="section-title">Activity Analysis</h2>
