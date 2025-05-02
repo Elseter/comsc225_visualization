@@ -281,6 +281,32 @@ export default function Home() {
               </h3>
               <p>37.9% of activites have music playing 70% of the time or more </p>
             </div>
+
+            <div className="methodology-card">
+              <div className="methodology-icon">🎵</div>
+              <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                170 / 274 activities
+              </h3>
+              <p>62.1% of activites have music playing less than 70% of the time </p>
+            </div>
+
+            <div className="methodology-card">
+              <div className="methodology-icon">📊</div>
+              <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                Mean: 51.12%
+              </h3>
+              <p>On average, I spent 51.12% of each activity listing to music </p>
+            </div>
+
+            <div className="methodology-card">
+              <div className="methodology-icon">📊</div>
+              <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                27.88 minutes
+              </h3>
+              <p>Average time spent listening to music during activities where music was played</p>
+            </div>
+
+            
           </div>
         </div>
       </section>
