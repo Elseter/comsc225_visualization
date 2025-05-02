@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ActivityDataLoader from '../components/ActivityDataLoader';
+import MusicSpeedChart from '../components/MusicSpeedChart';
+import SpeedComparisonTrack from '../components/SpeedComparisonTrack';
 import './Home.css';
 
 export default function Home() {
@@ -268,6 +270,34 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">Spotify & Garmin</h2>
+          <div className="methodology-grid">
+            <div className="methodology-card">
+              <div className="methodology-icon">🎵</div>
+              <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                104 / 274 activities
+              </h3>
+              <p>37.9% of activites have music playing 70% of the time or more </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">How Music impacts speed</h2>
+          <MusicSpeedChart />
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">How Music impacts speed</h2>
+          <SpeedComparisonTrack />
+        </div>
+      </section>
 
       <section className="content-section cta-section">
         <div className="container">
