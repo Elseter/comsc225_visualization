@@ -17,6 +17,14 @@ export default function Home() {
     { name: 'rowing v2', count: 1, emoji: '🚣‍♂️' },
   ];
 
+  const spotifyStats = [
+    { name: 'Total Songs Played', count: '33,654 songs', emoji: '🎵' },
+    { name: 'Total Minutes Played', count: '82,249.02 minutes', emoji: '⏱️' },
+    { name: 'Total Hours Played', count: '1,370.82 hours', emoji: '⏳' },
+    { name: 'Total Days Played', count: '57.12 days (13.86% of total time)', emoji: '📅' },
+
+  ]
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -169,6 +177,96 @@ export default function Home() {
 
 
       <ActivityDataLoader />
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">And then we bring Spotify in</h2>
+          <div className="info-grid">
+            <div className="info-text">
+              <p>
+                <strong>Spotify</strong> allows users to access a wealth of their personal listening data through its <a href="https://www.spotify.com/account/privacy" target="_blank" rel="noopener noreferrer">Privacy page</a>. By submitting a data request, users can download a comprehensive archive of their activity on the platform, including detailed listening history.
+              </p>
+              <p>
+                This listening history includes granular data about each song you've played—such as the timestamp, platform (e.g., Android or desktop), duration played, country of connection, and whether the song was skipped or played offline. For example, a single record might look like this:
+              </p>
+              <pre>
+                <code>
+                  {`                  {
+                    "ts": "2024-05-09T15:48:14Z",
+                    "platform": "android",
+                    "ms_played": 1298,
+                    "conn_country": "US",
+                    "ip_addr": "174.192.3.145",
+                    "master_metadata_track_name": "Renegades",
+                    "master_metadata_album_artist_name": "X Ambassadors",
+                    "master_metadata_album_album_name": "VHS",
+                    "spotify_track_uri": "spotify:track:0fYVliAYKHuPmECRs1pbRf",
+                    "episode_name": null,
+                    "episode_show_name": null,
+                    "spotify_episode_uri": null,
+                    "audiobook_title": null,
+                    "audiobook_uri": null,
+                    "audiobook_chapter_uri": null,
+                    "audiobook_chapter_title": null,
+                    "reason_start": "fwdbtn",
+                    "reason_end": "fwdbtn",
+                    "shuffle": true,
+                    "skipped": true,
+                    "offline": false,
+                    "offline_timestamp": 1715269693,
+                    "incognito_mode": false
+                  },`}
+                </code>
+              </pre>
+              <p>
+                With this data in hand, you can explore your music habits, analyze listening trends, or even visualize how your tastes have evolved over time.
+              </p>
+            </div>
+            <div className="info-image">
+              <img src="./SpotifyRequest.png" alt="Spotify Request Image" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">Spotify Statistics</h2>
+          <div className="methodology-grid">
+            {spotifyStats.map((stat, index) => (
+              <div className="methodology-card" key={index}>
+                <div className="methodology-icon">{stat.emoji}</div>
+                <h3 style={{ textTransform: 'capitalize', color: '#0056d2' }}>
+                  {stat.name}
+                </h3>
+                <p>{stat.count}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section">
+        <div className="container">
+          <h2 className="section-title">Cleaning and Correlating with Running Activity</h2>
+          <div className="info-grid">
+            <div className="info-text">
+              <p>
+                After downloading my full listening history from Spotify, I began by cleaning and transforming the data to make it analysis-ready. Using the <code>ms_played</code> field, I was able to determine the total time I spent listing to each song.
+              </p>
+              <p>
+                I then added a new column, <code>min_played</code>, to the dataset for easier comparison. To align this music data with my physical activity, I processed my running data from Garmin, which included timestamps for the start and duration of each run. From this, I calculated the end time for every activity by adding the elapsed duration to the start time.
+              </p>
+              <p>
+                With both datasets time-aligned, I filtered the Spotify data to only include songs played during the time window of each run. This involved looping through every recorded activity and selecting only the tracks whose timestamps fell within that specific start and stop period.
+              </p>
+              <p>
+                This resulted in <strong>2,104 songs</strong> played while running between December 25th, 2024 and Febuary 9th, 2025, excluding treadmill runs
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
       <section className="content-section cta-section">
